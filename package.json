@@ -1,0 +1,16 @@
+{
+  "name": "reliefconnect-backend",
+  "version": "1.0.0",
+  "description": "Backend API for ReliefConnect - Disaster Relief Coordination Platform. Built with zero external dependencies (pure Node.js core modules) so it runs anywhere Node runs, with no npm install failures.",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed:reset": "node scripts/reset-data.js"
+  },
+  "license": "MIT"
+}
