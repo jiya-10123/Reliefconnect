@@ -1,0 +1,3699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReliefConnect | Disaster Relief Coordination</title>
+
+    <!-- Bootstrap 5.3 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================
+           ROOT DESIGN SYSTEM
+        ========================= */
+
+        :root {
+            --primary: #102a43;
+            --primary-dark: #071827;
+            --secondary: #0f766e;
+            --secondary-light: #14b8a6;
+
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+
+            --warning: #f97316;
+            --warning-light: #ffedd5;
+
+            --amber: #eab308;
+            --amber-light: #fef9c3;
+
+            --success: #16a34a;
+            --success-light: #dcfce7;
+
+            --info: #2563eb;
+            --info-light: #dbeafe;
+
+            --light-bg: #f6f8fb;
+            --white: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+
+            --border: #e2e8f0;
+
+            --radius: 18px;
+            --shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--light-bg);
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Manrope", sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: rgba(7, 24, 39, 0.97);
+            backdrop-filter: blur(15px);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .navbar .nav-link {
+            color: rgba(255,255,255,.75) !important;
+            margin: 0 7px;
+            font-size: .92rem;
+            font-weight: 500;
+        }
+
+        .navbar .nav-link:hover {
+            color: white !important;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255,255,255,.2);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .btn {
+            border-radius: 11px;
+            padding: 11px 20px;
+            font-weight: 600;
+        }
+
+        .btn-primary-custom {
+            background: var(--secondary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary-custom:hover {
+            background: #0b5f59;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-danger-custom {
+            background: var(--danger);
+            color: white;
+            border: none;
+        }
+
+        .btn-danger-custom:hover {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .btn-outline-light-custom {
+            border: 1px solid rgba(255,255,255,.35);
+            color: white;
+        }
+
+        .btn-outline-light-custom:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 720px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 80% 30%, rgba(20,184,166,.18), transparent 30%),
+                linear-gradient(135deg, #071827 0%, #102a43 60%, #0f3d4a 100%);
+            color: white;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 50%;
+            right: -150px;
+            top: -100px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border: 1px solid rgba(255,255,255,.05);
+            border-radius: 50%;
+            right: -250px;
+            top: -200px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            background: rgba(20,184,166,.12);
+            border: 1px solid rgba(20,184,166,.35);
+            color: #5eead4;
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #2dd4bf;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(45,212,191,.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(45,212,191,0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(45,212,191,0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 6vw, 5rem);
+            line-height: 1.02;
+            font-weight: 800;
+            letter-spacing: -2px;
+            max-width: 760px;
+        }
+
+        .hero h1 span {
+            color: #5eead4;
+        }
+
+        .hero-description {
+            color: #cbd5e1;
+            font-size: 1.12rem;
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 25px 0 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+
+        /* =========================
+           SAFETY NOTICE
+        ========================= */
+
+        .safety-bar {
+            background: #fff7ed;
+            border-bottom: 1px solid #fed7aa;
+            padding: 13px 0;
+        }
+
+        .safety-bar i {
+            color: var(--warning);
+        }
+
+        .safety-text {
+            font-size: .87rem;
+            color: #7c2d12;
+            margin: 0;
+        }
+
+
+        /* =========================
+           LIVE OVERVIEW
+        ========================= */
+
+        .overview-section {
+            margin-top: -55px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .overview-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            height: 100%;
+            border: 1px solid var(--border);
+            transition: .25s;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .overview-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+        }
+
+        .overview-number {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .overview-label {
+            color: var(--muted);
+            margin-top: 4px;
+            font-size: .9rem;
+        }
+
+        .blue-bg {
+            background: var(--info-light);
+            color: var(--info);
+        }
+
+        .red-bg {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .green-bg {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .orange-bg {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .teal-bg {
+            background: #ccfbf1;
+            color: var(--secondary);
+        }
+
+
+        /* =========================
+           SECTION HEADINGS
+        ========================= */
+
+        .section-label {
+            color: var(--secondary);
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+        }
+
+
+        /* =========================
+           EMERGENCY SECTION
+        ========================= */
+
+        .emergency-section {
+            background:
+                linear-gradient(135deg, rgba(127,29,29,.95), rgba(153,27,27,.94)),
+                url("");
+            color: white;
+            border-radius: 25px;
+            padding: 55px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-section::after {
+            content: "SOS";
+            position: absolute;
+            right: 30px;
+            bottom: -70px;
+            font-size: 15rem;
+            font-weight: 900;
+            color: rgba(255,255,255,.04);
+        }
+
+        .emergency-section p {
+            color: #fecaca;
+        }
+
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .step-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: var(--radius);
+            height: 100%;
+            transition: .25s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #ccfbf1;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           REQUEST FORM
+        ========================= */
+
+        .form-wrapper {
+            background: white;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            border-radius: 24px;
+            padding: 35px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: .9rem;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 48px;
+            border-radius: 10px;
+            border-color: var(--border);
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(15,118,110,.12);
+        }
+
+
+        /* =========================
+           REQUEST CARDS
+        ========================= */
+
+        .request-card {
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 25px;
+            height: 100%;
+            transition: .25s;
+        }
+
+        .request-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .priority-badge {
+            padding: 7px 11px;
+            border-radius: 50px;
+            font-size: .75rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .priority-emergency {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .priority-high {
+            background: var(--warning-light);
+            color: #c2410c;
+        }
+
+        .priority-normal {
+            background: var(--amber-light);
+            color: #854d0e;
+        }
+
+        .status-badge {
+            padding: 6px 10px;
+            background: var(--info-light);
+            color: var(--info);
+            border-radius: 50px;
+            font-size: .75rem;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           NGO / VOLUNTEER
+        ========================= */
+
+        .profile-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 25px;
+            transition: .25s;
+        }
+
+        .profile-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+        }
+
+        .profile-icon {
+            width: 55px;
+            height: 55px;
+            background: #ccfbf1;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        .verified {
+            color: var(--success);
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: .75rem;
+            margin: 3px;
+        }
+
+
+        /* =========================
+           DASHBOARD PREVIEW
+        ========================= */
+
+        .dashboard-preview {
+            background: #071827;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 25px 60px rgba(7,24,39,.2);
+        }
+
+        .dashboard-window {
+            background: #f8fafc;
+            border-radius: 17px;
+            overflow: hidden;
+        }
+
+        .dashboard-topbar {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 17px 22px;
+        }
+
+        .dashboard-sidebar {
+            background: #102a43;
+            color: white;
+            min-height: 430px;
+            padding: 20px 10px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: 9px;
+            color: #cbd5e1;
+            font-size: .82rem;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-item.active {
+            background: rgba(20,184,166,.18);
+            color: white;
+        }
+
+        .dashboard-main {
+            padding: 25px;
+        }
+
+        .mini-stat {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 17px;
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-size: 1.35rem;
+        }
+
+        .mini-stat small {
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           RESOURCE CARDS
+        ========================= */
+
+        .resource-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 25px;
+            text-align: center;
+            height: 100%;
+        }
+
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            margin: auto auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ecfeff;
+            color: #0891b2;
+            border-radius: 18px;
+            font-size: 1.6rem;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #071827;
+            color: white;
+            padding: 65px 0 25px;
+        }
+
+        footer p,
+        footer a {
+            color: #94a3b8;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.08);
+            margin-top: 45px;
+            padding-top: 20px;
+            color: #64748b;
+            font-size: .82rem;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .fade-up {
+            animation: fadeUp .8s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 991px) {
+
+            .hero {
+                min-height: 650px;
+            }
+
+            .hero h1 {
+                font-size: 3.3rem;
+            }
+
+            .overview-section {
+                margin-top: 0;
+                padding-top: 35px;
+            }
+
+            .dashboard-sidebar {
+                min-height: auto;
+            }
+
+        }
+
+        @media (max-width: 767px) {
+
+            .section-padding {
+                padding: 65px 0;
+            }
+
+            .hero {
+                min-height: 650px;
+            }
+
+            .hero h1 {
+                font-size: 2.7rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .emergency-section {
+                padding: 35px 25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .form-wrapper {
+                padding: 23px;
+            }
+
+            .dashboard-main {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#home">
+
+            <span class="brand-icon">
+                <i class="bi bi-life-preserver"></i>
+            </span>
+
+            RELIEFCONNECT
+
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#how">How It Works</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#emergency">Emergency Help</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#ngos">NGOs</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#volunteers">Volunteers</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#resources">Resources</a>
+                </li>
+
+            </ul>
+
+            <div class="d-flex gap-2">
+
+                <a href="#request" class="btn btn-danger-custom btn-sm">
+                    <i class="bi bi-exclamation-triangle me-1"></i>
+                    Request Help
+                </a>
+
+                <a href="#volunteers" class="btn btn-outline-light-custom btn-sm">
+                    Volunteer
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     SAFETY NOTICE
+========================= -->
+
+<div class="safety-bar">
+
+    <div class="container">
+
+        <p class="safety-text">
+
+            <i class="bi bi-shield-exclamation me-2"></i>
+
+            <strong>Safety Notice:</strong>
+
+            For life-threatening emergencies, contact the appropriate local
+            emergency services. ReliefConnect does not replace professional
+            emergency services.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="container hero-content">
+
+        <div class="row">
+
+            <div class="col-lg-9 fade-up">
+
+                <div class="hero-badge">
+
+                    <span class="pulse-dot"></span>
+
+                    Disaster Relief Coordination Platform
+
+                </div>
+
+                <h1>
+
+                    Help should reach people
+
+                    <span>when they need it most.</span>
+
+                </h1>
+
+                <p class="hero-description">
+
+                    ReliefConnect connects disaster-affected people with
+                    volunteers, NGOs and relief resources through one
+                    coordinated platform.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#request" class="btn btn-danger-custom btn-lg">
+
+                        <i class="bi bi-megaphone-fill me-2"></i>
+
+                        Request Help
+
+                    </a>
+
+                    <a href="#volunteers"
+                       class="btn btn-outline-light-custom btn-lg">
+
+                        <i class="bi bi-people-fill me-2"></i>
+
+                        Volunteer
+
+                    </a>
+
+                    <a href="#ngos"
+                       class="btn btn-outline-light-custom btn-lg">
+
+                        <i class="bi bi-building me-2"></i>
+
+                        NGO / Organization
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LIVE OVERVIEW
+========================= -->
+
+<section class="overview-section">
+
+    <div class="container">
+
+        <div class="row g-3">
+
+            <div class="col-6 col-lg">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon blue-bg">
+                        <i class="bi bi-clipboard2-pulse"></i>
+                    </div>
+
+                    <h3 class="overview-number" data-value="0">--</h3>
+
+                    <div class="overview-label">
+                        Active Requests
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon red-bg">
+                        <i class="bi bi-exclamation-octagon"></i>
+                    </div>
+
+                    <h3 class="overview-number">--</h3>
+
+                    <div class="overview-label">
+                        Urgent Requests
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon green-bg">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+
+                    <h3 class="overview-number">--</h3>
+
+                    <div class="overview-label">
+                        Active Volunteers
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon orange-bg">
+                        <i class="bi bi-building-check"></i>
+                    </div>
+
+                    <h3 class="overview-number">--</h3>
+
+                    <div class="overview-label">
+                        Verified NGOs
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon teal-bg">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+
+                    <h3 class="overview-number">--</h3>
+
+                    <div class="overview-label">
+                        Available Resources
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section class="section-padding" id="how">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <div class="section-label">
+                Simple Coordination
+            </div>
+
+            <h2 class="section-title">
+                How ReliefConnect Works
+            </h2>
+
+            <p class="section-description mx-auto">
+                One platform connects people requesting help with volunteers,
+                NGOs and available resources.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">01</div>
+
+                    <h5>Report a Need</h5>
+
+                    <p>
+                        Citizens can submit a disaster-relief request with
+                        location, help type and urgency.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">02</div>
+
+                    <h5>Priority is Calculated</h5>
+
+                    <p>
+                        A transparent rule-based system helps identify
+                        high-priority requests.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">03</div>
+
+                    <h5>Help is Assigned</h5>
+
+                    <p>
+                        Suitable volunteers or NGOs can accept requests
+                        and coordinate available resources.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">04</div>
+
+                    <h5>Track Resolution</h5>
+
+                    <p>
+                        Citizens can track progress from reported to
+                        assigned, in-progress and resolved.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EMERGENCY
+========================= -->
+
+<section class="section-padding pt-0" id="emergency">
+
+    <div class="container">
+
+        <div class="emergency-section">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <div class="section-label text-warning">
+                        Emergency Support
+                    </div>
+
+                    <h2 class="display-6 fw-bold">
+                        Need Immediate Help?
+                    </h2>
+
+                    <p class="mt-3 mb-4">
+                        Submit an emergency request so authorized volunteers
+                        and relief organizations can coordinate a response.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+
+                        <a href="#request"
+                           class="btn btn-light">
+
+                            <i class="bi bi-exclamation-circle me-2"></i>
+
+                            Request Emergency Help
+
+                        </a>
+
+                        <button
+                            class="btn btn-outline-light"
+                            onclick="showEmergencyNotice()">
+
+                            <i class="bi bi-telephone me-2"></i>
+
+                            Contact Local Emergency Services
+
+                        </button>
+
+                        <a href="#ngos"
+                           class="btn btn-outline-light">
+
+                            <i class="bi bi-geo-alt me-2"></i>
+
+                            Find Nearby Relief
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REQUEST HELP
+========================= -->
+
+<section class="section-padding bg-white" id="request">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="text-center mb-5">
+
+                    <div class="section-label">
+                        Citizen Support
+                    </div>
+
+                    <h2 class="section-title">
+                        Request Emergency Help
+                    </h2>
+
+                    <p class="section-description mx-auto">
+                        Provide accurate information so your request can be
+                        coordinated effectively.
+                    </p>
+
+                </div>
+
+
+                <div class="form-wrapper">
+
+                    <form id="helpForm">
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="fullName"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="phone"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Type of Help
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="helpType"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select help type
+                                    </option>
+
+                                    <option value="rescue">
+                                        Rescue
+                                    </option>
+
+                                    <option value="medical">
+                                        Medical
+                                    </option>
+
+                                    <option value="food">
+                                        Food
+                                    </option>
+
+                                    <option value="water">
+                                        Water
+                                    </option>
+
+                                    <option value="shelter">
+                                        Shelter
+                                    </option>
+
+                                    <option value="clothing">
+                                        Clothing
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Urgency
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="urgency"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select urgency
+                                    </option>
+
+                                    <option value="emergency">
+                                        🚨 Emergency
+                                    </option>
+
+                                    <option value="high">
+                                        🟠 High
+                                    </option>
+
+                                    <option value="normal">
+                                        🟡 Normal
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    City
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="city"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Area
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="area"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Address / Location Description
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="address"
+                                    rows="3"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    People Affected
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="people"
+                                    min="1"
+                                    value="1"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    Latitude
+                                </label>
+
+                                <input
+                                    type="number"
+                                    step="any"
+                                    class="form-control"
+                                    id="latitude"
+                                    placeholder="Optional"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    Longitude
+                                </label>
+
+                                <input
+                                    type="number"
+                                    step="any"
+                                    class="form-control"
+                                    id="longitude"
+                                    placeholder="Optional"
+                                >
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Describe the situation
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="description"
+                                    rows="5"
+                                    placeholder="Explain what help is required..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Additional Notes
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="notes"
+                                    rows="3"
+                                    placeholder="Optional"
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <div class="alert alert-warning">
+
+                                    <i class="bi bi-info-circle me-2"></i>
+
+                                    Please provide accurate information.
+                                    False or duplicate requests can delay
+                                    assistance to people who need it.
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger-custom btn-lg w-100"
+                                >
+
+                                    <i class="bi bi-send-fill me-2"></i>
+
+                                    Submit Help Request
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SAMPLE REQUESTS
+========================= -->
+
+<section class="section-padding" id="requests">
+
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-end mb-5">
+
+            <div>
+
+                <div class="section-label">
+                    Response Center
+                </div>
+
+                <h2 class="section-title mb-2">
+                    Priority Requests
+                </h2>
+
+                <p class="section-description mb-0">
+                    Example UI only. Real requests should come from Supabase.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row g-4" id="requestsGrid">
+
+
+            <!-- Emergency -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="request-card">
+
+                    <div class="d-flex justify-content-between mb-4">
+
+                        <span class="priority-badge priority-emergency">
+
+                            <i class="bi bi-exclamation-octagon-fill"></i>
+
+                            Emergency
+
+                        </span>
+
+                        <span class="status-badge">
+                            Reported
+                        </span>
+
+                    </div>
+
+                    <h5>
+                        Rescue assistance required
+                    </h5>
+
+                    <p class="text-muted small">
+                        4 people require immediate rescue assistance.
+                    </p>
+
+                    <hr>
+
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        Area A
+                    </div>
+
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-people me-2"></i>
+                        4 people affected
+                    </div>
+
+                    <div class="small text-muted">
+                        <i class="bi bi-graph-up me-2"></i>
+                        Priority Score: <strong>170</strong>
+                    </div>
+
+                    <button
+                        class="btn btn-danger-custom w-100 mt-4"
+                        onclick="showLoginMessage()"
+                    >
+                        View Request
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- High -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="request-card">
+
+                    <div class="d-flex justify-content-between mb-4">
+
+                        <span class="priority-badge priority-high">
+
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+
+                            High
+
+                        </span>
+
+                        <span class="status-badge">
+                            Reported
+                        </span>
+
+                    </div>
+
+                    <h5>
+                        Water distribution needed
+                    </h5>
+
+                    <p class="text-muted small">
+                        Drinking water is required for affected families.
+                    </p>
+
+                    <hr>
+
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        Area B
+                    </div>
+
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-people me-2"></i>
+                        20 people affected
+                    </div>
+
+                    <div class="small text-muted">
+                        <i class="bi bi-graph-up me-2"></i>
+                        Priority Score: <strong>160</strong>
+                    </div>
+
+                    <button
+                        class="btn btn-primary-custom w-100 mt-4"
+                        onclick="showLoginMessage()"
+                    >
+                        View Request
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Normal -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="request-card">
+
+                    <div class="d-flex justify-content-between mb-4">
+
+                        <span class="priority-badge priority-normal">
+
+                            <i class="bi bi-info-circle-fill"></i>
+
+                            Normal
+
+                        </span>
+
+                        <span class="status-badge">
+                            Reported
+                        </span>
+
+                    </div>
+
+                    <h5>
+                        Food assistance required
+                    </h5>
+
+                    <p class="text-muted small">
+                        Food packets are required for affected residents.
+                    </p>
+
+                    <hr>
+
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        Area C
+                    </div>
+
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-people me-2"></i>
+                        10 people affected
+                    </div>
+
+                    <div class="small text-muted">
+                        <i class="bi bi-graph-up me-2"></i>
+                        Priority Score: <strong>100</strong>
+                    </div>
+
+                    <button
+                        class="btn btn-primary-custom w-100 mt-4"
+                        onclick="showLoginMessage()"
+                    >
+                        View Request
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     VOLUNTEERS
+========================= -->
+
+<section class="section-padding bg-white" id="volunteers">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <div class="section-label">
+                People Ready To Help
+            </div>
+
+            <h2 class="section-title">
+                Become a Volunteer
+            </h2>
+
+            <p class="section-description mx-auto">
+                Volunteers can register their skills and availability and
+                help coordinate disaster requests.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h5>First Aid</h5>
+
+                    <p class="text-muted small">
+                        Support people requiring basic first-aid assistance.
+                    </p>
+
+                    <span class="service-tag">
+                        First Aid
+                    </span>
+
+                    <span class="service-tag">
+                        Medical Assistance
+                    </span>
+
+                    <div class="mt-4">
+
+                        <span class="text-success fw-bold small">
+
+                            <i class="bi bi-circle-fill me-1"></i>
+
+                            Available
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+
+                    <h5>Logistics Support</h5>
+
+                    <p class="text-muted small">
+                        Help coordinate transportation and relief supplies.
+                    </p>
+
+                    <span class="service-tag">
+                        Logistics
+                    </span>
+
+                    <span class="service-tag">
+                        Driving
+                    </span>
+
+                    <div class="mt-4">
+
+                        <span class="text-success fw-bold small">
+
+                            <i class="bi bi-circle-fill me-1"></i>
+
+                            Available
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-icon">
+                        <i class="bi bi-life-preserver"></i>
+                    </div>
+
+                    <h5>General Support</h5>
+
+                    <p class="text-muted small">
+                        Assist with distribution and general relief
+                        coordination.
+                    </p>
+
+                    <span class="service-tag">
+                        Food Distribution
+                    </span>
+
+                    <span class="service-tag">
+                        General Support
+                    </span>
+
+                    <div class="mt-4">
+
+                        <span class="text-success fw-bold small">
+
+                            <i class="bi bi-circle-fill me-1"></i>
+
+                            Available
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="text-center mt-5">
+
+            <button
+                class="btn btn-primary-custom btn-lg"
+                data-bs-toggle="modal"
+                data-bs-target="#registerModal"
+            >
+
+                <i class="bi bi-person-plus me-2"></i>
+
+                Register as Volunteer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NGOs
+========================= -->
+
+<section class="section-padding" id="ngos">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <div class="section-label">
+                Relief Organizations
+            </div>
+
+            <h2 class="section-title">
+                NGO Network
+            </h2>
+
+            <p class="section-description mx-auto">
+                Verified organizations can coordinate requests and manage
+                available relief resources.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-icon">
+                        <i class="bi bi-building"></i>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <h5>
+                            Organization
+                        </h5>
+
+                        <span class="verified">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Verified
+
+                        </span>
+
+                    </div>
+
+                    <p class="text-muted small">
+                        NGO information will be loaded from the database.
+                    </p>
+
+                    <span class="service-tag">
+                        Medical Aid
+                    </span>
+
+                    <span class="service-tag">
+                        Food
+                    </span>
+
+                    <span class="service-tag">
+                        Water
+                    </span>
+
+                    <div class="mt-4">
+
+                        <button
+                            class="btn btn-outline-secondary btn-sm"
+                            onclick="showLoginMessage()"
+                        >
+                            View Organization
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+
+                    <h5>
+                        Resource Coordination
+                    </h5>
+
+                    <p class="text-muted small">
+                        NGOs can add and manage water, food, medical kits,
+                        blankets and other resources.
+                    </p>
+
+                    <span class="service-tag">
+                        Water
+                    </span>
+
+                    <span class="service-tag">
+                        Shelter
+                    </span>
+
+                    <span class="service-tag">
+                        Logistics
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h5>
+                        NGO Verification
+                    </h5>
+
+                    <p class="text-muted small">
+                        Organizations remain pending until an administrator
+                        verifies them.
+                    </p>
+
+                    <span class="service-tag">
+                        Pending
+                    </span>
+
+                    <span class="service-tag">
+                        Verified
+                    </span>
+
+                    <span class="service-tag">
+                        Suspended
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <button
+                class="btn btn-primary-custom btn-lg"
+                data-bs-toggle="modal"
+                data-bs-target="#ngoModal"
+            >
+
+                <i class="bi bi-building me-2"></i>
+
+                Register as NGO
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESOURCES
+========================= -->
+
+<section class="section-padding bg-white" id="resources">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <div class="section-label">
+                Relief Inventory
+            </div>
+
+            <h2 class="section-title">
+                Available Resources
+            </h2>
+
+            <p class="section-description mx-auto">
+                Resource availability will be connected to NGO inventory
+                through Supabase.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-6 col-md-4 col-lg-2">
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        <i class="bi bi-droplet"></i>
+                    </div>
+
+                    <h6>Water</h6>
+
+                    <small class="text-muted">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2">
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        <i class="bi bi-basket"></i>
+                    </div>
+
+                    <h6>Food</h6>
+
+                    <small class="text-muted">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2">
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h6>Medical Kits</h6>
+
+                    <small class="text-muted">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2">
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        <i class="bi bi-house"></i>
+                    </div>
+
+                    <h6>Shelter</h6>
+
+                    <small class="text-muted">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2">
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        <i class="bi bi-box"></i>
+                    </div>
+
+                    <h6>Clothing</h6>
+
+                    <small class="text-muted">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2">
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+
+                    <h6>Transport</h6>
+
+                    <small class="text-muted">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <button
+                class="btn btn-primary-custom btn-lg"
+                data-bs-toggle="modal"
+                data-bs-target="#resourceModal"
+            >
+
+                <i class="bi bi-box-seam me-2"></i>
+
+                Add Relief Resource
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD PREVIEW
+========================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5">
+
+                <div class="section-label">
+                    Command Center
+                </div>
+
+                <h2 class="section-title">
+                    One dashboard for coordinated relief.
+                </h2>
+
+                <p class="section-description">
+
+                    Administrators can monitor requests, volunteers,
+                    NGOs, resources, assignments and activity from one
+                    centralized interface.
+
+                </p>
+
+                <div class="mt-4">
+
+                    <div class="d-flex gap-3 mb-3">
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        <span>
+                            Priority-based request monitoring
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex gap-3 mb-3">
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        <span>
+                            Volunteer assignment tracking
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex gap-3 mb-3">
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        <span>
+                            NGO resource management
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex gap-3">
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        <span>
+                            Request status and activity tracking
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="dashboard-preview">
+
+                    <div class="dashboard-window">
+
+                        <div class="dashboard-topbar d-flex justify-content-between">
+
+                            <strong>
+                                Disaster Response Overview
+                            </strong>
+
+                            <i class="bi bi-bell"></i>
+
+                        </div>
+
+
+                        <div class="row g-0">
+
+                            <div class="col-md-3">
+
+                                <div class="dashboard-sidebar">
+
+                                    <div class="sidebar-item active">
+                                        <i class="bi bi-grid"></i>
+                                        Dashboard
+                                    </div>
+
+                                    <div class="sidebar-item">
+                                        <i class="bi bi-exclamation-circle"></i>
+                                        Requests
+                                    </div>
+
+                                    <div class="sidebar-item">
+                                        <i class="bi bi-people"></i>
+                                        Volunteers
+                                    </div>
+
+                                    <div class="sidebar-item">
+                                        <i class="bi bi-building"></i>
+                                        NGOs
+                                    </div>
+
+                                    <div class="sidebar-item">
+                                        <i class="bi bi-box"></i>
+                                        Resources
+                                    </div>
+
+                                    <div class="sidebar-item">
+                                        <i class="bi bi-bar-chart"></i>
+                                        Analytics
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-9">
+
+                                <div class="dashboard-main">
+
+                                    <div class="row g-3 mb-4">
+
+                                        <div class="col-6">
+
+                                            <div class="mini-stat">
+
+                                                <small>
+                                                    Total Requests
+                                                </small>
+
+                                                <strong>
+                                                    --
+                                                </strong>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-6">
+
+                                            <div class="mini-stat">
+
+                                                <small>
+                                                    Urgent
+                                                </small>
+
+                                                <strong class="text-danger">
+                                                    --
+                                                </strong>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="card border-0 shadow-sm">
+
+                                        <div class="card-body">
+
+                                            <div class="d-flex justify-content-between">
+
+                                                <strong>
+                                                    Highest Priority
+                                                </strong>
+
+                                                <span class="priority-badge priority-emergency">
+                                                    Emergency
+                                                </span>
+
+                                            </div>
+
+                                            <hr>
+
+                                            <h6>
+                                                Rescue assistance
+                                            </h6>
+
+                                            <small class="text-muted">
+                                                Data will be loaded from
+                                                Supabase.
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <div class="col-lg-5">
+
+                <h4 class="fw-bold">
+
+                    <i class="bi bi-life-preserver me-2"></i>
+
+                    RELIEFCONNECT
+
+                </h4>
+
+                <p class="mt-3">
+
+                    Connecting people in need with people ready to help.
+
+                    A disaster coordination and information platform.
+
+                </p>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <div class="footer-title">
+                    Platform
+                </div>
+
+                <p>
+                    <a href="#home">Home</a>
+                </p>
+
+                <p>
+                    <a href="#how">How It Works</a>
+                </p>
+
+                <p>
+                    <a href="#ngos">NGOs</a>
+                </p>
+
+                <p>
+                    <a href="#volunteers">Volunteers</a>
+                </p>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <div class="footer-title">
+                    Support
+                </div>
+
+                <p>
+                    <a href="#request">Request Help</a>
+                </p>
+
+                <p>
+                    <a href="#emergency">Emergency Help</a>
+                </p>
+
+                <p>
+                    <a href="#resources">Resources</a>
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <div class="footer-title">
+                    Safety
+                </div>
+
+                <p>
+                    ReliefConnect does not replace professional emergency
+                    services.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom text-center">
+
+            © 2026 ReliefConnect. Disaster coordination platform.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     REGISTER MODAL
+========================= -->
+
+<div
+    class="modal fade"
+    id="registerModal"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 rounded-4">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Become a Volunteer
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="volunteerForm">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="volunteerName"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="volunteerEmail"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="volunteerCity"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Skills
+                        </label>
+
+                        <select class="form-select" id="volunteerSkill">
+
+                            <option>First Aid</option>
+                            <option>Driving</option>
+                            <option>Rescue</option>
+                            <option>Food Distribution</option>
+                            <option>Medical Assistance</option>
+                            <option>Logistics</option>
+                            <option>General Support</option>
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary-custom w-100"
+                    >
+
+                        Register
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NGO REGISTER MODAL
+========================= -->
+
+<div
+    class="modal fade"
+    id="ngoModal"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 rounded-4">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Register as NGO
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="ngoForm">
+
+                    <div class="mb-3">
+                        <label class="form-label">Organization Name</label>
+                        <input type="text" class="form-control" id="ngoName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="ngoEmail" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="ngoCity" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Services (comma separated)</label>
+                        <input type="text" class="form-control" id="ngoServices" placeholder="Water, Food, Medical Aid">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-custom w-100">
+                        Register
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ADD RESOURCE MODAL
+========================= -->
+
+<div
+    class="modal fade"
+    id="resourceModal"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 rounded-4">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Add Relief Resource
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p class="text-muted small" id="resourceNgoHint">
+                    Register as an NGO first so we know who this stock belongs to.
+                </p>
+
+                <form id="resourceForm">
+
+                    <div class="mb-3">
+                        <label class="form-label">Resource Type</label>
+                        <select class="form-select" id="resourceType" required>
+                            <option value="">Select resource</option>
+                            <option value="water">Water</option>
+                            <option value="food">Food</option>
+                            <option value="medical">Medical Kits</option>
+                            <option value="shelter">Shelter</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="transport">Transport</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Quantity</label>
+                        <input type="number" min="0" class="form-control" id="resourceQuantity" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Unit</label>
+                        <input type="text" class="form-control" id="resourceUnit" placeholder="bottles / packets / kits">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Location</label>
+                        <input type="text" class="form-control" id="resourceLocation" placeholder="Relief camp / area">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-custom w-100">
+                        Add Resource
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+    class="toast-container position-fixed bottom-0 end-0 p-3"
+>
+
+    <div
+        id="mainToast"
+        class="toast border-0 shadow"
+        role="alert"
+    >
+
+        <div class="toast-header">
+
+            <i class="bi bi-life-preserver text-success me-2"></i>
+
+            <strong class="me-auto">
+                ReliefConnect
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+            ></button>
+
+        </div>
+
+        <div class="toast-body" id="toastMessage">
+            Message
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- Supabase JS client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+
+<script>
+
+    /* =========================
+       SUPABASE CONFIG
+       Frontend talks straight to Postgres via Supabase's client SDK -
+       no Node/Express server needed. Security is enforced by Row Level
+       Security policies + triggers on the database side (see
+       reliefconnect_supabase_schema.sql), not by this file.
+    ========================= */
+
+    const SUPABASE_URL = "https://mkqltgltxbywtdoasobc.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1rcWx0Z2x0eGJ5d3Rkb2Fzb2JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxMzIwMjAsImV4cCI6MjEwNDcwODAyMH0.2TKUI0tJkKwxHl0wUhgOgc9RtYefg1-1X1R58K8HLQA";
+
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+
+    // Some preview/sandbox consoles relay console.error() args to a parent
+    // frame via postMessage, which can't clone complex objects (Supabase
+    // errors sometimes carry a raw Headers/Response object). Reduce any
+    // error down to a plain string before logging so the real reason is
+    // always visible, in any environment.
+    function describeError(err) {
+
+        if (!err) return "Unknown error";
+        if (typeof err === "string") return err;
+
+        const parts = [];
+        if (err.message) parts.push(err.message);
+        if (err.error_description) parts.push(err.error_description);
+        if (err.code) parts.push("code: " + err.code);
+        if (err.details) parts.push("details: " + err.details);
+        if (err.hint) parts.push("hint: " + err.hint);
+
+        return parts.length ? parts.join(" | ") : String(err);
+
+    }
+
+
+    /* =========================
+       ROW -> VIEW-MODEL MAPPING
+       Postgres columns are snake_case (help_type, people_affected,
+       priority_score). The rest of this file (written for the old
+       Node API) expects camelCase, so we translate once, here, and
+       leave every render function below untouched.
+    ========================= */
+
+    function mapRequestRow(row) {
+
+        return {
+            id: row.id,
+            fullName: row.full_name,
+            phone: row.phone,
+            helpType: row.help_type,
+            urgency: row.urgency,
+            city: row.city,
+            area: row.area,
+            address: row.address,
+            peopleAffected: row.people_affected,
+            description: row.description,
+            notes: row.notes,
+            priorityScore: row.priority_score,
+            status: row.status,
+            createdAt: row.created_at
+        };
+
+    }
+
+
+    /* =========================
+       LIVE OVERVIEW
+    ========================= */
+
+    async function loadOverviewStats() {
+
+        try {
+
+            const { data: stats, error } =
+                await supabaseClient.rpc("stats_overview");
+
+            if (error) throw error;
+
+            const numbers =
+                document.querySelectorAll(".overview-number");
+
+            const values = [
+                stats.activeRequests,
+                stats.urgentRequests,
+                stats.activeVolunteers,
+                stats.verifiedNgos,
+                stats.availableResources
+            ];
+
+            numbers.forEach((el, i) => {
+
+                if (values[i] !== undefined) {
+                    el.textContent = values[i];
+                }
+
+            });
+
+        } catch (err) {
+
+            console.error("Could not load overview stats:", describeError(err));
+
+        }
+
+    }
+
+
+    /* =========================
+       PRIORITY REQUESTS (Response Center)
+    ========================= */
+
+    function priorityBadgeClass(urgency) {
+
+        if (urgency === "emergency") return "priority-emergency";
+        if (urgency === "high") return "priority-high";
+        return "priority-normal";
+
+    }
+
+    function priorityIconClass(urgency) {
+
+        if (urgency === "emergency") return "bi-exclamation-octagon-fill";
+        if (urgency === "high") return "bi-exclamation-triangle-fill";
+        return "bi-info-circle-fill";
+
+    }
+
+    function buttonClass(urgency) {
+
+        return urgency === "emergency"
+            ? "btn-danger-custom"
+            : "btn-primary-custom";
+
+    }
+
+    function escapeHtml(value) {
+
+        const div = document.createElement("div");
+        div.textContent = value == null ? "" : String(value);
+        return div.innerHTML;
+
+    }
+
+    function requestCardHtml(request) {
+
+        return `
+            <div class="col-md-6 col-lg-4">
+                <div class="request-card">
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="priority-badge ${priorityBadgeClass(request.urgency)}">
+                            <i class="bi ${priorityIconClass(request.urgency)}"></i>
+                            ${escapeHtml(request.urgency)}
+                        </span>
+                        <span class="status-badge">
+                            ${escapeHtml(request.status)}
+                        </span>
+                    </div>
+                    <h5>${escapeHtml(request.description).slice(0, 60)}</h5>
+                    <p class="text-muted small">
+                        ${escapeHtml(request.helpType)} assistance requested.
+                    </p>
+                    <hr>
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        ${escapeHtml(request.area)}
+                    </div>
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-people me-2"></i>
+                        ${escapeHtml(request.peopleAffected)} people affected
+                    </div>
+                    <div class="small text-muted">
+                        <i class="bi bi-graph-up me-2"></i>
+                        Priority Score: <strong>${escapeHtml(request.priorityScore)}</strong>
+                    </div>
+                    <button class="btn ${buttonClass(request.urgency)} w-100 mt-4" onclick="showLoginMessage()">
+                        View Request
+                    </button>
+                </div>
+            </div>
+        `;
+
+    }
+
+    async function loadPriorityRequests() {
+
+        const grid = document.getElementById("requestsGrid");
+        if (!grid) return;
+
+        try {
+
+            const { data: rows, error } = await supabaseClient
+                .from("requests")
+                .select("*")
+                .order("priority_score", { ascending: false })
+                .limit(3);
+
+            if (error) throw error;
+
+            const requests = (rows || []).map(mapRequestRow);
+
+            if (requests.length > 0) {
+                grid.innerHTML = requests.map(requestCardHtml).join("");
+            }
+
+        } catch (err) {
+
+            console.error("Could not load priority requests:", describeError(err));
+
+        }
+
+    }
+
+
+    /* =========================
+       RESOURCE AVAILABILITY
+    ========================= */
+
+    async function loadResourceSummary() {
+
+        try {
+
+            const { data: rows, error } = await supabaseClient
+                .from("resources_summary")
+                .select("*");
+
+            if (error) throw error;
+
+            const totals = {};
+            (rows || []).forEach(r => { totals[r.type] = r.total; });
+
+            const order = [
+                "water", "food", "medical",
+                "shelter", "clothing", "transport"
+            ];
+
+            const valueEls =
+                document.querySelectorAll(".resource-card small.text-muted");
+
+            valueEls.forEach((el, i) => {
+
+                const type = order[i];
+
+                if (type && totals[type] !== undefined) {
+                    el.textContent = totals[type];
+                }
+
+            });
+
+        } catch (err) {
+
+            console.error("Could not load resource summary:", describeError(err));
+
+        }
+
+    }
+
+
+    /* =========================
+       REQUEST FORM
+    ========================= */
+
+    document
+        .getElementById("helpForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const submitButton = this.querySelector("button[type=submit]");
+            const originalButtonHtml = submitButton.innerHTML;
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const helpType = document.getElementById("helpType").value;
+            const urgency = document.getElementById("urgency").value;
+            const city = document.getElementById("city").value.trim();
+            const area = document.getElementById("area").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const peopleAffected = Number(document.getElementById("people").value);
+            const latitude = document.getElementById("latitude").value || null;
+            const longitude = document.getElementById("longitude").value || null;
+            const description = document.getElementById("description").value.trim();
+            const notes = document.getElementById("notes").value.trim();
+
+            if (
+                !fullName || !phone || !helpType ||
+                !urgency || !city || !area ||
+                !address || !description
+            ) {
+
+                showToast("Please complete all required fields.");
+                return;
+
+            }
+
+            if (!peopleAffected || peopleAffected < 1) {
+
+                showToast("People affected must be at least 1.");
+                return;
+
+            }
+
+            try {
+
+                submitButton.disabled = true;
+                submitButton.innerHTML =
+                    '<span class="spinner-border spinner-border-sm me-2"></span>Submitting...';
+
+                const { data: created, error } = await supabaseClient
+                    .from("requests")
+                    .insert({
+                        full_name: fullName,
+                        phone: phone,
+                        help_type: helpType,
+                        urgency: urgency,
+                        city: city,
+                        area: area,
+                        address: address,
+                        people_affected: peopleAffected,
+                        latitude: latitude,
+                        longitude: longitude,
+                        description: description,
+                        notes: notes
+                    })
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                showToast(
+                    `Request submitted successfully. Priority score: ${created.priority_score}.`
+                );
+
+                this.reset();
+
+                loadOverviewStats();
+                loadPriorityRequests();
+
+            } catch (err) {
+
+                showToast(describeError(err) || "Could not submit your request. Please try again.");
+
+            } finally {
+
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonHtml;
+
+            }
+
+        });
+
+
+    /* =========================
+       VOLUNTEER FORM
+       Registering a volunteer now also creates a real Supabase Auth
+       account (with a random password) so they have a login for later,
+       matching how the old Node backend behaved - it also auto-generated
+       a password when none was supplied.
+
+       IMPORTANT: this only works while "Confirm email" is turned OFF in
+       Supabase -> Authentication -> Providers -> Email. With it on,
+       signUp() does not return an active session, and the profile
+       insert below will be rejected by Row Level Security.
+    ========================= */
+
+    document
+        .getElementById("volunteerForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("volunteerName").value.trim();
+            const email = document.getElementById("volunteerEmail").value.trim();
+            const city = document.getElementById("volunteerCity").value.trim();
+            const skill = document.getElementById("volunteerSkill").value;
+
+            if (!name || !email || !city) {
+
+                showToast("Please complete all required fields.");
+                return;
+
+            }
+
+            try {
+
+                const randomPassword = crypto.randomUUID();
+
+                const { data: authData, error: authError } =
+                    await supabaseClient.auth.signUp({
+                        email: email,
+                        password: randomPassword
+                    });
+
+                if (authError) throw authError;
+                if (!authData.user) {
+                    throw new Error(
+                        "Sign-up didn't return an active session - check that " +
+                        "'Confirm email' is disabled in Supabase Auth settings."
+                    );
+                }
+
+                const { error: profileError } = await supabaseClient
+                    .from("profiles")
+                    .insert({
+                        id: authData.user.id,
+                        role: "volunteer",
+                        name: name,
+                        email: email,
+                        city: city,
+                        skills: skill ? [skill] : [],
+                        available: true
+                    });
+
+                if (profileError) throw profileError;
+
+                const modal =
+                    bootstrap.Modal.getInstance(
+                        document.getElementById("registerModal")
+                    );
+
+                if (modal) {
+                    modal.hide();
+                }
+
+                showToast("Thank you for registering as a volunteer!");
+
+                this.reset();
+
+                loadOverviewStats();
+
+            } catch (err) {
+
+                showToast(describeError(err) || "Could not complete registration. Please try again.");
+
+            }
+
+        });
+
+
+    /* =========================
+       NGO FORM
+       Same pattern as the volunteer form: real Supabase Auth account
+       (random password) + a profiles row with role "ngo". The returned
+       id becomes the ngo_id used by the resource form below, kept in
+       localStorage so it survives a page reload during the demo.
+    ========================= */
+
+    document
+        .getElementById("ngoForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("ngoName").value.trim();
+            const email = document.getElementById("ngoEmail").value.trim();
+            const city = document.getElementById("ngoCity").value.trim();
+            const servicesRaw = document.getElementById("ngoServices").value.trim();
+            const services = servicesRaw
+                ? servicesRaw.split(",").map(s => s.trim()).filter(Boolean)
+                : [];
+
+            if (!name || !email || !city) {
+                showToast("Please complete all required fields.");
+                return;
+            }
+
+            try {
+
+                const randomPassword = crypto.randomUUID();
+
+                const { data: authData, error: authError } =
+                    await supabaseClient.auth.signUp({
+                        email: email,
+                        password: randomPassword
+                    });
+
+                if (authError) throw authError;
+                if (!authData.user) {
+                    throw new Error(
+                        "Sign-up didn't return an active session - check that " +
+                        "'Confirm email' is disabled in Supabase Auth settings."
+                    );
+                }
+
+                const { error: profileError } = await supabaseClient
+                    .from("profiles")
+                    .insert({
+                        id: authData.user.id,
+                        role: "ngo",
+                        name: name,
+                        email: email,
+                        city: city,
+                        services: services,
+                        status: "verified"
+                    });
+
+                if (profileError) throw profileError;
+
+                localStorage.setItem("reliefconnect_ngo_id", authData.user.id);
+                localStorage.setItem("reliefconnect_ngo_name", name);
+                updateResourceNgoHint();
+
+                const modal =
+                    bootstrap.Modal.getInstance(document.getElementById("ngoModal"));
+                if (modal) modal.hide();
+
+                showToast("NGO registered! You can now add relief resources.");
+
+                this.reset();
+
+                loadOverviewStats();
+
+            } catch (err) {
+
+                showToast(describeError(err) || "Could not complete NGO registration. Please try again.");
+
+            }
+
+        });
+
+
+    function updateResourceNgoHint() {
+
+        const ngoName = localStorage.getItem("reliefconnect_ngo_name");
+        const hint = document.getElementById("resourceNgoHint");
+        if (!hint) return;
+
+        hint.textContent = ngoName
+            ? ("Adding stock as: " + ngoName)
+            : "Register as an NGO first so we know who this stock belongs to.";
+
+    }
+
+    updateResourceNgoHint();
+
+
+    /* =========================
+       RESOURCE FORM
+       Inserts directly into public.resources as the currently
+       "logged in" NGO (the one just registered above). Refreshes
+       the resource cards immediately after a successful insert.
+    ========================= */
+
+    document
+        .getElementById("resourceForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const ngoId = localStorage.getItem("reliefconnect_ngo_id");
+
+            if (!ngoId) {
+                showToast("Please register as an NGO first.");
+                return;
+            }
+
+            const type = document.getElementById("resourceType").value;
+            const quantity = document.getElementById("resourceQuantity").value;
+            const unit = document.getElementById("resourceUnit").value.trim();
+            const location = document.getElementById("resourceLocation").value.trim();
+
+            if (!type || quantity === "") {
+                showToast("Please select a type and quantity.");
+                return;
+            }
+
+            try {
+
+                const { error } = await supabaseClient
+                    .from("resources")
+                    .insert({
+                        ngo_id: ngoId,
+                        type: type,
+                        quantity: Number(quantity),
+                        unit: unit,
+                        location: location
+                    });
+
+                if (error) throw error;
+
+                const modal =
+                    bootstrap.Modal.getInstance(document.getElementById("resourceModal"));
+                if (modal) modal.hide();
+
+                showToast("Resource added!");
+
+                this.reset();
+
+                loadResourceSummary();
+                loadOverviewStats();
+
+            } catch (err) {
+
+                showToast(describeError(err) || "Could not add resource. Please try again.");
+
+            }
+
+        });
+
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    function showToast(message) {
+
+        document.getElementById("toastMessage").innerText =
+            message;
+
+        const toast =
+            new bootstrap.Toast(
+                document.getElementById("mainToast")
+            );
+
+        toast.show();
+
+    }
+
+
+    /* =========================
+       EMERGENCY NOTICE
+    ========================= */
+
+    function showEmergencyNotice() {
+
+        showToast(
+            "Please contact your local official emergency services. No emergency number is hardcoded by ReliefConnect."
+        );
+
+    }
+
+
+    /* =========================
+       LOGIN MESSAGE
+    ========================= */
+
+    function showLoginMessage() {
+
+        showToast(
+            "Sign in as a volunteer, NGO or admin to view and manage this request."
+        );
+
+    }
+
+
+    /* =========================
+       INITIAL DATA LOAD
+    ========================= */
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        loadOverviewStats();
+        loadPriorityRequests();
+        loadResourceSummary();
+
+    });
+
+
+    /* =========================
+       SCROLL ANIMATION
+    ========================= */
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("fade-up");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.1
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".overview-card, .step-card, .request-card, .profile-card, .resource-card"
+        )
+        .forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
